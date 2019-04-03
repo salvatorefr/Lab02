@@ -6,13 +6,13 @@ import java.util.List;
 
 public class AlienDictionary{
 	
-	private List <Word> dizionario;
+	private List <WordEnhanced> dizionario;
 	
 	public AlienDictionary() {
-		dizionario= new ArrayList<Word>();
+		dizionario= new ArrayList<WordEnhanced>();
 	}
 	public void addWord(String a,String t) {
-		Word w=new Word(a,t);
+		WordEnhanced w=new WordEnhanced(a,t);
 		if (this.dizionario.contains(w)){
 		 int indice= dizionario.indexOf(w);
 		 this.dizionario.get(indice).setTranslation(t);
@@ -34,10 +34,10 @@ public class AlienDictionary{
 		
 	}
 	public String translateWord(String daCercare) {
-		Word cerca= new Word (daCercare,"");
+		WordEnhanced cerca= new WordEnhanced (daCercare,"");
 		if ( dizionario.contains(cerca)){
 			int indice= dizionario.indexOf(cerca);
-			return dizionario.get(indice).getTranslation();
+			return dizionario.get(indice).getTranslation().toString();
 		}
 		else return null;
 	}
