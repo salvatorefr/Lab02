@@ -1,6 +1,5 @@
 package it.polito.tdp.alien;
 	
-import it.polito.tdp.alien.alienModel.AlienModel;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -13,7 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AlienModel model=new AlienModel();
+			AlienDictionary model=new AlienDictionary();
 			FXMLLoader loader= new FXMLLoader(getClass().getResource("Alien.fxml"));
 			BorderPane root = (BorderPane)loader.load();
 			AlienController controller=loader.getController();

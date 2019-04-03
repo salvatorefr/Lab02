@@ -1,4 +1,4 @@
-package it.polito.tdp.alien.alienModel;
+package it.polito.tdp.alien;
 
 public class Word {
 	private String Alienword;
@@ -31,6 +31,11 @@ public class Word {
 			
 	
 	 return false;
+	}
+
+	public void setTranslation(String t) {
+	this.translation=t;
+		
 	}
 	
 	

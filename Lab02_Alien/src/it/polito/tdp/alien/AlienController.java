@@ -9,7 +9,6 @@ package it.polito.tdp.alien;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.polito.tdp.alien.alienModel.AlienModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AlienController {
-	AlienModel model;
+	AlienDictionary model;
 	
     @FXML
     private ResourceBundle resources;
@@ -46,12 +45,32 @@ public class AlienController {
     
     @FXML
     void doTranslate(ActionEvent event) {
-    this.txtResult.clear();
-    
-    String stampa,txtInserito;
-    txtInserito=this.textIntrodotto.getText();
-    stampa=model.decidi(txtInserito);
-    this.txtResult.appendText(stampa);
+   String text;
+    text=this.textIntrodotto.getText();
+	String []parIns=text.split(" ");
+	if (parIns.length==2)
+		{
+		model.addWord(parIns[0],parIns[1]);
+		scrivi("parola inserita\n");
+		return;
+		
+		}
+	if (parIns.length==1) {
+		try {
+		String traduzione=	model.translateWord(parIns[0]).concat("\n");
+		scrivi(traduzione);
+		}catch(NullPointerException e)
+        {
+			scrivi("parola non presente\n");
+        }
+		}
+
+	
+	else scrivi("errore, digita una parola per cercarne il significato\n");
+	
+
+   
+   
     	    	
     }
     
@@ -64,10 +83,16 @@ public class AlienController {
     }
 
 
-	public void setModel(AlienModel model) {
+	public void setModel(AlienDictionary model) {
 		this.model=model;
 		
 	}
-    
+	
+
+
+	private void scrivi(String stampa) {
+		 this.txtResult.appendText(stampa);
+		
+	}
     
 }

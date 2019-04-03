@@ -58,7 +58,7 @@
             </HBox>
             <HBox prefHeight="200.0">
                <children>
-                  <TextArea fx:id="txtResult" HBox.hgrow="ALWAYS">
+                  <TextArea fx:id="txtResult" editable="false" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
