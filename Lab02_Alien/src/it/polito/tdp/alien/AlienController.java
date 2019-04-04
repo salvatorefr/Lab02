@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+import java.util.regex.Matcher;
 public class AlienController {
 	AlienDictionary model;
 	
@@ -47,32 +47,34 @@ public class AlienController {
     void doTranslate(ActionEvent event) {
    String text;
     text=this.textIntrodotto.getText();
-	String []parIns=text.split(" ");
-	if (parIns.length==2)
-		{
-		model.addWord(parIns[0],parIns[1]);
-		scrivi("parola inserita\n");
-		return;
+    text=text.toLowerCase();
+  
+    if ((text.matches("(([a-z])|\\s){1,20}"))){
+    		String []parIns=text.split(" ");
+    		if (parIns.length==2)
+    		{
+    			model.addWord(parIns[0],parIns[1]);
+    			scrivi("parola inserita\n");
+    			return;
 		
-		}
-	if (parIns.length==1) {
-		try {
-		String traduzione=	model.translateWord(parIns[0]).concat("\n");
-		scrivi(traduzione);
-		}catch(NullPointerException e)
-        {
-			scrivi("parola non presente\n");
-        }
-		}
+    		}
+    		if (parIns.length==1) {
+    			try {
+    				String traduzione=	model.translateWord(parIns[0]).concat("\n");
+    				scrivi(traduzione);
+    			}catch(NullPointerException e)
+    			{
+    				scrivi("parola non presente\n");
+    			}
+    		}
 
 	
-	else scrivi("errore, digita una parola per cercarne il significato\n");
-	
+    		else scrivi("errore, digita una parola per cercarne il significato\n");
+    		}
 
-   
-   
+    		else scrivi("hai inserito caratteri non validi");
     	    	
-    }
+     }
     
     
     @FXML
